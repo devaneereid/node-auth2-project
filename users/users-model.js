@@ -4,12 +4,12 @@ module.exports = {
     find,
     findBy,
     add,
-    findById,
+    findById
 };
 
 function find() {
     return db('users')
-        .select('id', 'username', 'password');
+        .select('id', 'username', 'password', 'role');
 };
 
 function findBy(filter) {
