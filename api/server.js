@@ -12,18 +12,18 @@ server.use(helmet());
 server.use(express.json());
 server.use(cors());
 
-server.use('/api/users', authenticator, checkRole('user'), usersRouter);
+server.use('/api/users', authenticator, checkDepartment('user'), usersRouter);
 server.use('/api/auth', authRouter);
 
 server.get('/', (req, res) => {
     res.send('<h2>Node Auth-2 Project</h2>');
 });
 
-function checkRole(role) {
+function checkDepartment(department) {
     return (req, res, next) => {
         if (
             req.decodedToken && 
-            req.decodedToken.role === 'management'
+            req.decodedToken.department === 'management'
         ) {
             next();
         } else {
